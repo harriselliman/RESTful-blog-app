@@ -1,14 +1,16 @@
-// APP CONFIG
-
 var express     = require("express"),
     app         = express(),
     bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose");
+    mongoose    = require("mongoose"),
+    methodOverride = require("method-override");
+    
+// APP CONFIG    
     
 mongoose.connect("mongodb://localhost:27017/restful_blog_app", { useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
 
 // MONGOOSE/MODEL CONFIG
 
