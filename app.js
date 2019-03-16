@@ -30,11 +30,17 @@ Blog.create({
 
 app.get("/", function(req, res){
     res.redirect("/blogs");
-})
+});
 
 app.get("/blogs", function(req, res){
-    res.render("index");
-})
+    Blog.find({}, function(err, blogs){
+        if(err) {
+            console.log(err);
+        } else {
+            res.render("index",{blogs: blogs});
+        }
+    });
+});
 
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Server is running");
