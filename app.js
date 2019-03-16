@@ -1,3 +1,5 @@
+// APP CONFIG
+
 var express     = require("express"),
     app         = express(),
     bodyParser  = require("body-parser"),
@@ -7,17 +9,24 @@ mongoose.connect("mongodb://localhost:27017/restful_blog_app", { useNewUrlParser
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
+// MONGOOSE/MODEL CONFIG
+
 var blogSchema = new mongoose.Schema({
     title: String,
     image: String,
     body: String,
     created: {type: Date, default: Date.now}
-})
+});
 
-// title
-// image
-// body
-// created
+var Blog = mongoose.model("Blog", blogSchema);
+
+Blog.create({
+    title: "Test Blog",
+    image: "https://images.unsplash.com/photo-1533158307587-828f0a76ef46?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
+    body: "HELLO THIS IS A BLOG POST"
+});
+
+// RESTFUL ROUTES
 
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Server is running");
