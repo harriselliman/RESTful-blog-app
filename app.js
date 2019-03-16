@@ -93,10 +93,16 @@ app.get("/blogs/:id/edit", function(req, res){
 // UPDATE ROUTE
 
 app.put("/blogs/:id", function(req, res){
-   res.send("Update Route.");
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
+       if(err){
+           res.redirect("/blogs");
+       } else {
+           res.redirect("/blogs/" + req.params.id);
+       }
+   });
 });
 
 
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Server is running");
-})
+});
