@@ -28,6 +28,14 @@ Blog.create({
 
 // RESTFUL ROUTES
 
+app.get("/", function(req, res){
+    res.redirect("/blogs");
+})
+
+app.get("/blogs", function(req, res){
+    res.render("index");
+})
+
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Server is running");
 })
