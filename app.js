@@ -49,7 +49,7 @@ app.get("/blogs", function(req, res){
 
 app.get("/blogs/new", function(req, res){
     res.render("new");
-})
+});
 
 
 // CREATE ROUTE
@@ -61,8 +61,16 @@ app.post("/blogs", function(req, res){
         } else {
             res.redirect("/blogs");
         }
-    })
-})
+    });
+});
+
+// SHOW ROUTE
+
+app.get("/blogs/:id", function(req, res){
+    res.send('show page');
+});
+
+
 
 
 app.listen(process.env.PORT, process.env.IP, function(){
