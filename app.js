@@ -7,6 +7,13 @@ mongoose.connect("mongodb://localhost:27017/restful_blog_app", { useNewUrlParser
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
+var blogSchema = new mongoose.Schema({
+    title: String,
+    image: String,
+    body: String,
+    created: {type: Date, default: Date.now}
+})
+
 // title
 // image
 // body
